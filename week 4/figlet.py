@@ -3,10 +3,10 @@ import pyfiglet
 import sys 
 
 import random
-
-# If no command line arguments, choose randomly a font
+# get the whole fonts in pyfiglet lebrary
 font = pyfiglet.Figlet().getFonts()
 
+# If no command line arguments, choose randomly a font
 if len(sys.argv) ==1:
     random_font = random.choice(font)
     f = pyfiglet.Figlet(font=random_font)
