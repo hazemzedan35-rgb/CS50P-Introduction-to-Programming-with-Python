@@ -19,5 +19,9 @@ def test_shorten_Symbols():
     assert shorten("+_()(&^?<<{~@$#~~$#@!})") == "+_()(&^?<<{~@$#~~$#@!})"
 
 
+def  test_shorten_empty():
+    assert shorten("") == ""
+
+
 def test_shorten_empty_input():
     assert shorten("") == ""
