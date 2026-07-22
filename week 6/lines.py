@@ -1,45 +1,38 @@
 import sys
 
-import csv
-
 def main():
-    name_file = checker()
     try:
-       final_no = count_lines(name_file)
+        file_name = checker()
 
-    except FileNotFoundError:
-       sys.exit("File does not exist")
-
+    except (IndexError, ValueError, FileNotFoundError) as error:
+        sys.exit(error)
     else:
-       print(f"number of files lines is {final_no}")
-
-        
-        
+        number_of_lines = lines_counter(file_name)
+        print(number_of_lines)
 
 def checker():
     user_input = sys.argv
-    if len(user_input) <2:
-        sys.exit("too few arguments")
-    elif len(user_input)> 2:
-        sys.exit("to many arguments")
-   
-    elif  not user_input[1].endswith(".py"):
-        sys.exit("Not a Python file")   
+
+    if len(user_input) < 2:
+        raise IndexError("too few arguments!!")
+    elif len(user_input) > 2:
+        raise IndexError("too many arguments!!")
+    elif not user_input[1].endswith(".py"):
+        raise ValueError("not python file")
     else:
         return user_input[1]
-    
 
 
-def count_lines(file):
-    no_lines = 0
+
+
+def lines_counter(file):
     with open(file, "r") as f:
+        no_lines = 0
         for row in f:
-            line_strip = row.strip()
-
-            if   line_strip.startswith("#"):
+            cleaned_row = row.strip()
+            if cleaned_row.startswith("#"):
                 continue
-
-            if line_strip == "":
+            elif cleaned_row == "":
                 continue
             else:
                 no_lines +=1
