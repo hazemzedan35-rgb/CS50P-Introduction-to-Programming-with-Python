@@ -7,18 +7,17 @@ def main():
     split_write(old, new)
 
 
-
-def check_input(input):
-   
-    if len(input) <3:
+def check_files(files):
+    if len(files) <3:
         sys.exit("too few command-line arguments")
-    elif len(input) > 3:
-        sys.exit("too many comman-line arguments")
-    old, new = input[1], input[2]
+    elif len(files) > 3:
+        sys.exit("too many command-line arguments")
+
+    old, new = files[1], files[2]
     if old.endswith(".csv") and new.endswith(".csv"):
         pass
     else:
-        sys.exit("it is not csv file")
+        sys.exit("it isn't a csv file")
 
     return old, new
 
