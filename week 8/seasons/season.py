@@ -1,10 +1,6 @@
 from datetime import date
 
-import re
-
-import sys
-
-import inflect
+import re, sys, inflect
 
 def main():
     entered_date = check_valid_input(get_date())
